@@ -1,0 +1,134 @@
+<code class="language-html"><!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+        <style type="text/css">
+            canvas {
+                border: 1px solid green;
+            }
+        </style>
+    </head>
+    <body>
+    ChooseFile：<input id="file" type="file">
+    <button onclick="restuya()">Clear</button>
+    <button onclick="saveTu();">Save</button>
+    <hr>
+    <canvas id="canvas" width="1105" height="500">
+        您的破浏览器不兼容，请升级！
+    </canvas>
+    <hr>
+    <div id="res"></div>
+    <script type="text/javascript" src="jq.js"></script>
+    <script type="text/javascript">
+
+        // 获取 canvas 对象
+        var canvas = document.getElementById('canvas');
+        // 获取绘图环境
+        var ctx = canvas.getContext('2d');
+
+        var last = null;
+
+        var file = document.getElementById('file');
+
+        // 文件对象
+        var filedata = null;
+
+        // 鼠标按下
+        canvas.onmousedown = function () {
+            // 在鼠标按下后触发鼠标移动事件
+            canvas.onmousemove = move;
+        }
+
+        // 鼠标抬起取消鼠标移动的事件
+        canvas.onmouseup = function () {
+            canvas.onmousemove = null;
+            last = null;
+        }
+
+        // 鼠标移出画布时 移动事件也要取消。
+        canvas.onmouseout = function () {
+            canvas.onmousemove = null;
+            last = null;
+        }
+
+        // 鼠标移动函数
+        function move(e) {
+            // console.log(e.offsetX);
+            if (last != null) {
+                ctx.beginPath();
+                ctx.moveTo(last[0], last[1]);
+                ctx.lineTo(e.offsetX, e.offsetY);
+                ctx.stroke();
+            }
+            // 第一次触发这个函数，只做一件事，把当前 鼠标的 x , y 的位置记录下来
+            // 做下一次 线段的 起始点。
+            last = [e.offsetX, e.offsetY];
+
+        }
+
+        // 当文件域内容发生改变时触发函数
+        file.onchange = function (e) {
+            filedata = e.target.files[0];
+            // 	实例化文件读取对象
+            drawImg(filedata)
+        }
+
+
+        // 重新在画
+        function restuya() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawImg(filedata)
+        }
+
+        setInterval(function () {
+            var saveImage = canvas.toDataURL('image/png');
+            $.post("/save", saveImage);
+            console.log("Clear");
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }, 5000);
+
+        // 绘制图片
+        function drawImg(filedata) {
+
+            var readFile = new FileReader();
+
+            readFile.readAsDataURL(filedata);
+
+            // 图片读取成功
+            readFile.onload = function () {
+                // 结果
+                // console.log(this.result);
+                // this.result;
+                // 第一种方法
+                var Img = new Image();
+                Img.src = this.result;
+
+                Img.onload = function () {
+                    // 根据 图片的 宽高 来 设置canvas 宽和高
+                    canvas.width = Img.width;
+                    canvas.height = Img.height;
+
+                    // console.log(Img.width);
+
+                    // canvas.width = 500;
+                    // canvas.width = 500;
+
+                    ctx.drawImage(Img, 0, 0);
+
+                }
+            }
+        }
+
+
+        // 保存图片
+        function saveTu() {
+            var saveImage = canvas.toDataURL('image/png');
+            $.post("/save", saveImage);
+            // document.getElementById('res').innerHTML = '<img src="' + saveImage + '">';
+        }
+
+    </script>
+    </body>
+    </html>
+</code>
