@@ -27,6 +27,11 @@
         // 获取绘图环境
         var ctx = canvas.getContext('2d');
 
+        let origin=ctx.fillStyle;
+        ctx.fillStyle="#FFFFFF";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle=origin;
+
         var last = null;
 
         var file = document.getElementById('file');
@@ -85,7 +90,10 @@
             var saveImage = canvas.toDataURL('image/png');
             $.post("/save", saveImage);
             console.log("Clear");
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            let origin=ctx.fillStyle;
+            ctx.fillStyle="#FFFFFF";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle=origin;
         }, 5000);
 
         // 绘制图片
