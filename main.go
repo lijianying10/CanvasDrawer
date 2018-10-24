@@ -54,7 +54,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 
 	fmt.Println("debug: saving:", time.Now().Format("Mon_Jan_2_15_04_05_2006")+".png")
 
-	f, err := os.OpenFile(time.Now().Format("Mon_Jan_2_15_04_05_2006")+".png", os.O_WRONLY|os.O_CREATE, 0777)
+	f, err := os.OpenFile(time.Now().Format("data/Mon_Jan_2_15_04_05_2006")+".png", os.O_WRONLY|os.O_CREATE, 0777)
 	if err != nil {
 		panic("Cannot open file")
 	}
