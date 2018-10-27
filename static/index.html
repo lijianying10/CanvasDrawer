@@ -22,15 +22,17 @@
     <script type="text/javascript" src="jq.js"></script>
     <script type="text/javascript">
 
+        var PositionData = [];
+
         // 获取 canvas 对象
         var canvas = document.getElementById('canvas');
         // 获取绘图环境
         var ctx = canvas.getContext('2d');
 
-        let origin=ctx.fillStyle;
-        ctx.fillStyle="#FFFFFF";
+        let origin = ctx.fillStyle;
+        ctx.fillStyle = "#FFFFFF";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
-        ctx.fillStyle=origin;
+        ctx.fillStyle = origin;
 
         var last = null;
 
@@ -64,6 +66,7 @@
                 ctx.beginPath();
                 ctx.moveTo(last[0], last[1]);
                 ctx.lineTo(e.offsetX, e.offsetY);
+                PositionData.push(e.offsetX, e.offsetY);
                 ctx.stroke();
             }
             // 第一次触发这个函数，只做一件事，把当前 鼠标的 x , y 的位置记录下来
@@ -89,11 +92,13 @@
         setInterval(function () {
             var saveImage = canvas.toDataURL('image/png');
             $.post("/save", saveImage);
+            $.post("/saveData", JSON.stringify(PositionData));
+            PositionData = [];// clean data
             console.log("Clear");
-            let origin=ctx.fillStyle;
-            ctx.fillStyle="#FFFFFF";
+            let origin = ctx.fillStyle;
+            ctx.fillStyle = "#FFFFFF";
             ctx.fillRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle=origin;
+            ctx.fillStyle = origin;
         }, 5000);
 
         // 绘制图片
