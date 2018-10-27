@@ -77,7 +77,6 @@ func handlerData(w http.ResponseWriter, r *http.Request) {
 		println("error read body: ", err.Error())
 	}
 	defer r.Body.Close()
-	fmt.Println("data:", string(body))
 	var data []int
 	json.Unmarshal(body, &data)
 	f, err := os.OpenFile(time.Now().Format("data/Mon_Jan_2_15_04_05_2006")+".csv", os.O_WRONLY|os.O_CREATE, 0777)
@@ -85,7 +84,6 @@ func handlerData(w http.ResponseWriter, r *http.Request) {
 	var ps []Position
 	for idx := range data {
 		if idx%2 == 0 {
-			fmt.Println("writing: ", idx)
 			ps = append(ps, Position{
 				X: data[idx],
 				Y: data[idx+1],
@@ -108,7 +106,7 @@ func outputSVG(ps []Position) {
 		if idx == 0 {
 			pathD += fmt.Sprintf("M %d,%d\n", p.X, p.Y)
 		} else {
-			pathD += fmt.Sprintf("S %f,%f %d,%d\n", float64(ps[idx-1].X+p.X)/2.0, float64(ps[idx-1].Y+p.Y)/2.0, p.X, p.Y)
+			pathD += fmt.Sprintf("Q %f,%f %d,%d\n", float64(ps[idx-1].X+p.X)/2.0, float64(ps[idx-1].Y+p.Y)/2.0, p.X, p.Y)
 		}
 	}
 	svgBody := `<?xml version="1.0" encoding="utf-8"?>
