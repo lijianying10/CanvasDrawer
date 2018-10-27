@@ -10,14 +10,23 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"path/filepath"
 	"strconv"
 	"strings"
 	"time"
 )
 
+var basePath string
+
 func main() {
+	var err error
+	basePath, err = filepath.Abs(filepath.Dir(os.Args[0]))
+	if err != nil {
+		log.Fatal("老铁有点错误，请告诉philo： ", err.Error())
+	}
+	fmt.Println("dir: ", basePath)
 	fmt.Println(time.Now().Format("Mon_Jan_2_15_04_05_2006"))
-	fs := http.FileServer(http.Dir("static"))
+	fs := http.FileServer(http.Dir(basePath + "/static"))
 	http.Handle("/", fs)
 	http.HandleFunc("/save", handler)
 	http.HandleFunc("/saveData", handlerData)
@@ -33,7 +42,7 @@ type Position struct {
 }
 
 func jq(w http.ResponseWriter, r *http.Request) {
-	body, err := ioutil.ReadFile("static/jquery.js")
+	body, err := ioutil.ReadFile(basePath + "/static/jquery.js")
 	if err != nil {
 		w.WriteHeader(500)
 		return
@@ -62,7 +71,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 
 	fmt.Println("debug: saving:", time.Now().Format("Mon_Jan_2_15_04_05_2006")+".png")
 
-	f, err := os.OpenFile(time.Now().Format("png/Mon_Jan_2_15_04_05_2006")+".png", os.O_WRONLY|os.O_CREATE, 0777)
+	f, err := os.OpenFile(time.Now().Format(basePath+"/png/Mon_Jan_2_15_04_05_2006")+".png", os.O_WRONLY|os.O_CREATE, 0777)
 	if err != nil {
 		panic("Cannot open file")
 	}
@@ -79,7 +88,7 @@ func handlerData(w http.ResponseWriter, r *http.Request) {
 	defer r.Body.Close()
 	var data []int
 	json.Unmarshal(body, &data)
-	f, err := os.OpenFile(time.Now().Format("csv/Mon_Jan_2_15_04_05_2006")+".csv", os.O_WRONLY|os.O_CREATE, 0777)
+	f, err := os.OpenFile(time.Now().Format(basePath+"/csv/Mon_Jan_2_15_04_05_2006")+".csv", os.O_WRONLY|os.O_CREATE, 0777)
 	f.Write([]byte("X,Y\n"))
 	var ps []Position
 	for idx := range data {
@@ -127,7 +136,7 @@ func outputSVG(ps []Position) {
   </g>
 </svg>
 `
-	f, err := os.OpenFile(time.Now().Format("svg/Mon_Jan_2_15_04_05_2006")+".svg", os.O_WRONLY|os.O_CREATE, 0777)
+	f, err := os.OpenFile(time.Now().Format(basePath+"/svg/Mon_Jan_2_15_04_05_2006")+".svg", os.O_WRONLY|os.O_CREATE, 0777)
 	if err != nil {
 		fmt.Println("error save svg: ", err.Error())
 	}

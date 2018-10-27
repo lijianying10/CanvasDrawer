@@ -24,25 +24,25 @@
         <counts>
           <entry key="csv" value="3" />
           <entry key="gitignore" value="1" />
-          <entry key="go" value="3" />
+          <entry key="go" value="4" />
           <entry key="html" value="1" />
-          <entry key="png" value="13" />
-          <entry key="svg" value="3" />
+          <entry key="png" value="14" />
+          <entry key="svg" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Go" value="3" />
+          <entry key="Go" value="4" />
           <entry key="HTML" value="1" />
-          <entry key="Image" value="13" />
+          <entry key="Image" value="14" />
           <entry key="PLAIN_TEXT" value="4" />
-          <entry key="SVG" value="3" />
+          <entry key="SVG" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="gitignore" value="20" />
-          <entry key="go" value="2178" />
+          <entry key="go" value="2492" />
           <entry key="html" value="200" />
           <entry key="svg" value="2" />
           <entry key="txt" value="7" />
@@ -50,7 +50,7 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Go" value="2178" />
+          <entry key="Go" value="2492" />
           <entry key="HTML" value="200" />
           <entry key="PLAIN_TEXT" value="27" />
           <entry key="SVG" value="2" />
@@ -63,8 +63,17 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="409">
-              <caret line="79" selection-start-line="79" selection-end-line="79" />
+            <state relative-caret-position="672">
+              <caret line="43" column="42" selection-start-line="43" selection-start-column="42" selection-end-line="43" selection-end-column="42" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file:///usr/local/go/src/net/http/fs.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="576">
+              <caret line="39" column="5" selection-start-line="39" selection-start-column="5" selection-end-line="39" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -75,6 +84,8 @@
     <findStrings>
       <find>canvas.width</find>
       <find>canvas</find>
+      <find>wrig</find>
+      <find>os.OpenFile</find>
     </findStrings>
   </component>
   <component name="GOROOT" path="/usr/local/go" />
@@ -155,7 +166,7 @@
     </option>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-2" y="23" width="2560" height="1337" extended-state="6" />
+    <frame x="-3" y="23" width="2560" height="1337" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25178713" />
@@ -260,10 +271,23 @@
     <entry file="file://$PROJECT_DIR$/data/Sat_Oct27_16_12_13_2018.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/data/Sat_Oct27_16_13_34_2018.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/Sat_Oct27_16_13_34_2018.svg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file:///usr/local/go/src/net/http/fs.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="576">
+          <caret line="39" column="5" selection-start-line="39" selection-start-column="5" selection-end-line="39" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="409">
-          <caret line="79" selection-start-line="79" selection-end-line="79" />
+        <state relative-caret-position="672">
+          <caret line="43" column="42" selection-start-line="43" selection-start-column="42" selection-end-line="43" selection-end-column="42" />
         </state>
       </provider>
     </entry>
