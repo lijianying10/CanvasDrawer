@@ -10,6 +10,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"strconv"
 	"strings"
 	"time"
 )
@@ -24,6 +25,11 @@ func main() {
 
 	log.Println("Listening... http://127.0.0.1:13000")
 	http.ListenAndServe(":13000", nil)
+}
+
+type Position struct {
+	X int
+	Y int
 }
 
 func jq(w http.ResponseWriter, r *http.Request) {
@@ -72,16 +78,61 @@ func handlerData(w http.ResponseWriter, r *http.Request) {
 	}
 	defer r.Body.Close()
 	fmt.Println("data:", string(body))
-	data := []float64{}
+	var data []int
 	json.Unmarshal(body, &data)
 	f, err := os.OpenFile(time.Now().Format("data/Mon_Jan_2_15_04_05_2006")+".csv", os.O_WRONLY|os.O_CREATE, 0777)
 	f.Write([]byte("X,Y\n"))
+	var ps []Position
 	for idx := range data {
 		if idx%2 == 0 {
 			fmt.Println("writing: ", idx)
-			f.Write([]byte(fmt.Sprintf("%f,%f\n", data[idx], data[idx+1])))
+			ps = append(ps, Position{
+				X: data[idx],
+				Y: data[idx+1],
+			})
+			f.Write([]byte(fmt.Sprintf("%d,%d\n", data[idx], data[idx+1])))
 		}
 	}
 	f.Close()
+	outputSVG(ps)
 	w.Write([]byte("OK"))
+}
+
+func outputSVG(ps []Position) {
+	if len(ps) < 2 {
+		fmt.Println("not enough data to draw a picture")
+		return
+	}
+	pathD := ""
+	for idx, p := range ps {
+		if idx == 0 {
+			pathD += fmt.Sprintf("M %d,%d\n", p.X, p.Y)
+		} else {
+			pathD += fmt.Sprintf("S %f,%f %d,%d\n", float64(ps[idx-1].X+p.X)/2.0, float64(ps[idx-1].Y+p.Y)/2.0, p.X, p.Y)
+		}
+	}
+	svgBody := `<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="500" width="1105">
+  <path fill="none" stroke="red"
+        d="` + pathD + `
+           " />
+  <!-- Mark relevant points -->
+  <g stroke="black" stroke-width="3" fill="black">
+    <circle id="pointA" cx="` + strconv.Itoa(ps[0].X) + `" cy="` + strconv.Itoa(ps[0].Y) + `" r="3" />
+    <circle id="pointB" cx="` + strconv.Itoa(ps[len(ps)-1].X) + `" cy="` + strconv.Itoa(ps[len(ps)-1].Y) + `" r="3" />
+  </g>
+  <!-- Label the points -->
+  <g font-size="30" font-family="sans-serif" fill="black" stroke="none" text-anchor="middle">
+    <text x="` + strconv.Itoa(ps[0].X) + `" y="` + strconv.Itoa(ps[0].Y) + `" dx="-30">Start</text>
+    <text x="` + strconv.Itoa(ps[len(ps)-1].X) + `" y="` + strconv.Itoa(ps[len(ps)-1].Y) + `" dx="30">End</text>
+  </g>
+</svg>
+`
+	f, err := os.OpenFile(time.Now().Format("data/Mon_Jan_2_15_04_05_2006")+".svg", os.O_WRONLY|os.O_CREATE, 0777)
+	if err != nil {
+		fmt.Println("error save svg: ", err.Error())
+	}
+	f.Write([]byte(svgBody))
+	f.Close()
 }
