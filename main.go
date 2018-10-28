@@ -8,6 +8,7 @@ import (
 	"image/png"
 	"io/ioutil"
 	"log"
+	"math"
 	"net/http"
 	"os"
 	"path/filepath"
@@ -39,6 +40,8 @@ func main() {
 type Position struct {
 	X int
 	Y int
+	F float64 // Force
+	D float64 // Direction
 }
 
 func jq(w http.ResponseWriter, r *http.Request) {
@@ -89,20 +92,76 @@ func handlerData(w http.ResponseWriter, r *http.Request) {
 	var data []int
 	json.Unmarshal(body, &data)
 	f, err := os.OpenFile(time.Now().Format(basePath+"/csv/Mon_Jan_2_15_04_05_2006")+".csv", os.O_WRONLY|os.O_CREATE, 0777)
-	f.Write([]byte("X,Y\n"))
+	f.Write([]byte("X,Y,F,D\n"))
 	var ps []Position
 	for idx := range data {
 		if idx%2 == 0 {
+			var Force float64
+			var Direction float64
 			ps = append(ps, Position{
 				X: data[idx],
 				Y: data[idx+1],
 			})
-			f.Write([]byte(fmt.Sprintf("%d,%d\n", data[idx], data[idx+1])))
+			if len(ps) >= 2 {
+				Force, Direction = ForceAndDirectionCals(ps)
+			}
+			ps[len(ps)-1].F = Force
+			ps[len(ps)-1].D = Direction
+			f.Write([]byte(fmt.Sprintf("%d,%d,%f,%f\n", data[idx], data[idx+1], Force, Direction)))
 		}
 	}
+	sdf, sdd := SDCalc(ps)
+	f.Write([]byte(fmt.Sprintf("standard deviation, %f,%f\n", sdf, sdd)))
 	f.Close()
 	outputSVG(ps)
 	w.Write([]byte("OK"))
+}
+
+func SDCalc(PS []Position) (float64, float64) {
+	Farray := []float64{}
+	Darray := []float64{}
+	for _, p := range PS {
+		Farray = append(Farray, p.F)
+		Darray = append(Darray, p.D)
+	}
+	return SD(Farray), SD(Darray)
+}
+
+func SD(Data []float64) float64 {
+	count := 0.0
+	for _, d := range Data {
+		count += d
+	}
+	avg := count / float64(len(Data))
+	ns := 0.0
+	for _, d := range Data {
+		// Sigma
+		ns += (d - avg) * (d - avg)
+	}
+	s := ns / float64(len(Data)-1)
+	return math.Sqrt(s)
+}
+
+func ForceAndDirectionCals(PS []Position) (float64, float64) {
+	psLast := PS[len(PS)-1]
+	psPrev := PS[len(PS)-2]
+	DX := float64(psLast.X - psPrev.X)
+	DY := float64(psLast.Y - psPrev.Y)
+
+	Force := math.Sqrt(DX*DX + DY*DY)  // 勾股定理
+	Direction := math.Asin(DX / Force) // 反三角函数
+
+	// 针对二维平面进行象限计算
+	if DX < 0 && Force < 0 {
+		Direction += math.Pi
+	}
+	if DX > 0 && Force < 0 {
+		Direction += math.Pi / 2
+	}
+	if DX < 0 && Force > 0 {
+		Direction += 3 * math.Pi / 2
+	}
+	return Force, Direction
 }
 
 func outputSVG(ps []Position) {
