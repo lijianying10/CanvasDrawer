@@ -111,23 +111,26 @@ func outputSVG(ps []Position) {
 		return
 	}
 	pathD := ""
+	SVGP := ""
 	for idx, p := range ps {
 		if idx == 0 {
 			pathD += fmt.Sprintf("M %d,%d\n", p.X, p.Y)
 		} else {
 			pathD += fmt.Sprintf("Q %f,%f %d,%d\n", float64(ps[idx-1].X+p.X)/2.0, float64(ps[idx-1].Y+p.Y)/2.0, p.X, p.Y)
+			SVGP += fmt.Sprintf(`<circle cx="%d" cy="%d" r="1" />\n`, p.X, p.Y)
 		}
 	}
 	svgBody := `<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="500" width="1105">
-  <path fill="none" stroke="red"
+  <path fill="none" stroke="red" stroke-width="3"
         d="` + pathD + `
            " />
   <!-- Mark relevant points -->
   <g stroke="black" stroke-width="3" fill="black">
     <circle id="pointA" cx="` + strconv.Itoa(ps[0].X) + `" cy="` + strconv.Itoa(ps[0].Y) + `" r="3" />
     <circle id="pointB" cx="` + strconv.Itoa(ps[len(ps)-1].X) + `" cy="` + strconv.Itoa(ps[len(ps)-1].Y) + `" r="3" />
+` + SVGP + `
   </g>
   <!-- Label the points -->
   <g font-size="30" font-family="sans-serif" fill="black" stroke="none" text-anchor="middle">
