@@ -114,6 +114,7 @@ func handlerData(w http.ResponseWriter, r *http.Request) {
 	f.Write([]byte(fmt.Sprintf("standard deviation, %f,%f\n", sdf, sdd)))
 	f.Close()
 	outputSVG(ps)
+	overlaySVG()
 	w.Write([]byte("OK"))
 }
 
@@ -184,7 +185,7 @@ func outputSVG(ps []Position) {
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="500" width="1105">
   <path fill="none" stroke="red" stroke-width="3"
         d="` + pathD + `
-           " />
+           "/>
   <!-- Mark relevant points -->
   <g stroke="black" stroke-width="3" fill="black">
     <circle id="pointA" cx="` + strconv.Itoa(ps[0].X) + `" cy="` + strconv.Itoa(ps[0].Y) + `" r="3" />
@@ -203,5 +204,39 @@ func outputSVG(ps []Position) {
 		fmt.Println("error save svg: ", err.Error())
 	}
 	f.Write([]byte(svgBody))
+	f.Close()
+}
+
+func overlaySVG() {
+	res := ""
+	filepath.Walk(basePath+"/svg", func(path string, info os.FileInfo, err error) error {
+		if info.IsDir() {
+			return nil
+		}
+		body, err := ioutil.ReadFile(path)
+		if err != nil {
+			fmt.Println("read file : ", err.Error())
+		}
+		idx := strings.Index(string(body), "<path")
+		if idx > 0 {
+			pathbody := strings.TrimPrefix(string(body), string(body)[:idx])
+			idx2 := strings.Index(pathbody, "/>")
+			if idx2 > 0 {
+				res += strings.TrimSuffix(pathbody, pathbody[idx2:])
+				res += `/>`
+			}
+		}
+		return nil
+	})
+	f, err := os.OpenFile(time.Now().Format(basePath+"/svg/overlay")+".svg", os.O_WRONLY|os.O_CREATE, 0777)
+	if err != nil {
+		fmt.Println("error save svg: ", err.Error())
+	}
+	f.Write([]byte(`<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="500" width="1105">
+ 	` + res + ` 
+</svg>
+`))
 	f.Close()
 }
