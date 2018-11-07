@@ -140,7 +140,12 @@ func SD(Data []float64) float64 {
 		ns += (d - avg) * (d - avg)
 	}
 	s := ns / float64(len(Data)-1)
-	return math.Sqrt(s)
+	res := math.Sqrt(s)
+	if math.IsNaN(res) {
+		return 0
+	} else {
+		return res
+	}
 }
 
 func ForceAndDirectionCals(PS []Position) (float64, float64) {
@@ -183,7 +188,7 @@ func outputSVG(ps []Position) {
 	svgBody := `<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="500" width="1105">
-  <path fill="none" stroke="red" stroke-width="3"
+  <path fill="none" stroke="blue" stroke-width="3"
         d="` + pathD + `
            "/>
   <!-- Mark relevant points -->

@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ddc37c43-9d7a-4bdd-a4d0-9a05f9493228" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -14,39 +15,41 @@
     <session id="-608097376">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
+          <entry key="project.closed" value="5" />
           <entry key="project.open.time.1" value="1" />
-          <entry key="project.open.time.8" value="1" />
-          <entry key="project.opened" value="2" />
+          <entry key="project.open.time.6" value="1" />
+          <entry key="project.open.time.8" value="2" />
+          <entry key="project.open.time.9" value="1" />
+          <entry key="project.opened" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="csv" value="3" />
+          <entry key="csv" value="19" />
           <entry key="gitignore" value="2" />
-          <entry key="go" value="4" />
-          <entry key="html" value="2" />
+          <entry key="go" value="5" />
+          <entry key="html" value="3" />
           <entry key="md" value="1" />
-          <entry key="png" value="14" />
+          <entry key="png" value="19" />
           <entry key="sh" value="1" />
-          <entry key="svg" value="4" />
+          <entry key="svg" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Go" value="4" />
-          <entry key="HTML" value="2" />
-          <entry key="Image" value="14" />
+          <entry key="Go" value="5" />
+          <entry key="HTML" value="3" />
+          <entry key="Image" value="19" />
           <entry key="Markdown" value="1" />
-          <entry key="PLAIN_TEXT" value="6" />
-          <entry key="SVG" value="4" />
+          <entry key="PLAIN_TEXT" value="22" />
+          <entry key="SVG" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="gitignore" value="37" />
-          <entry key="go" value="5012" />
-          <entry key="html" value="200" />
+          <entry key="go" value="5141" />
+          <entry key="html" value="208" />
           <entry key="md" value="106" />
           <entry key="sh" value="44" />
           <entry key="svg" value="2" />
@@ -55,8 +58,8 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Go" value="5012" />
-          <entry key="HTML" value="200" />
+          <entry key="Go" value="5141" />
+          <entry key="HTML" value="208" />
           <entry key="Markdown" value="106" />
           <entry key="PLAIN_TEXT" value="88" />
           <entry key="SVG" value="2" />
@@ -69,55 +72,18 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="456">
-              <caret line="236" column="10" selection-start-line="236" selection-start-column="10" selection-end-line="236" selection-end-column="10" />
+            <state relative-caret-position="686">
+              <caret line="147" column="4" selection-start-line="147" selection-start-column="4" selection-end-line="147" selection-end-column="4" />
               <folding>
                 <element signature="n#!!block;n#main#1" />
                 <element signature="n#!!block;n#jq#0" />
                 <element signature="n#!!block;n#handler#0" />
+                <element signature="n#!!block;n#handlerData#0" />
                 <element signature="n#!!block;n#SDCalc#0" />
-                <element signature="n#!!block;n#SD#0" />
                 <element signature="n#!!block;n#ForceAndDirectionCals#0" />
+                <element signature="n#!!block;n#outputSVG#0" />
+                <element signature="n#!!block;n#overlaySVG#0" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/readme.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="144">
-                <caret line="6" selection-start-line="6" selection-end-line="6" />
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/static/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="384">
-              <caret line="16" column="47" selection-start-line="16" selection-start-column="47" selection-end-line="16" selection-end-column="47" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file:///usr/local/go/src/net/http/fs.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="576">
-              <caret line="39" column="5" selection-start-line="39" selection-start-column="5" selection-end-line="39" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -141,12 +107,12 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/static/index.html" />
         <option value="$PROJECT_DIR$/data/Sat_Oct27_16_00_37_2018.svg" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/clean.sh" />
         <option value="$PROJECT_DIR$/readme.md" />
         <option value="$PROJECT_DIR$/main.go" />
+        <option value="$PROJECT_DIR$/static/index.html" />
       </list>
     </option>
   </component>
@@ -156,7 +122,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-3" />
     <option name="y" value="23" />
     <option name="width" value="2560" />
@@ -168,6 +134,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -178,13 +145,27 @@
             <path>
               <item name="FileUploadServer" type="b2602c69:ProjectViewProjectNode" />
               <item name="FileUploadServer" type="462c0819:PsiDirectoryNode" />
+              <item name="csv" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FileUploadServer" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FileUploadServer" type="462c0819:PsiDirectoryNode" />
+              <item name="png" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FileUploadServer" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FileUploadServer" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FileUploadServer" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FileUploadServer" type="462c0819:PsiDirectoryNode" />
               <item name="svg" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -213,9 +194,10 @@
     </option>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-3" y="23" width="2560" height="1337" extended-state="0" />
+    <frame x="0" y="23" width="2560" height="1337" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25178713" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25774425" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -227,7 +209,7 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32978722" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.3608838" />
+      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.3608838" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -246,8 +228,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="fix bug" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/241024-1010-10T2424-08-610+00-00.png" />
-    <entry file="file://$PROJECT_DIR$/Wed_Oct24_21_14_56_2018.png" />
     <entry file="file://$PROJECT_DIR$/Wed_Oct24_21_15_01_2018.png" />
     <entry file="file://$PROJECT_DIR$/Wed_Oct24_21_15_06_2018.png" />
     <entry file="file://$PROJECT_DIR$/Wed_Oct24_21_22_36_2018.png" />
@@ -262,9 +242,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/Fri_Oct26_21_14_31_2018.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/data/Fri_Oct26_21_14_31_2018.png" />
     <entry file="file:///usr/local/go/src/fmt/print.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="399">
@@ -272,43 +250,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/Sat_Oct27_13_35_39_2018.csv">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/Sat_Oct27_13_36_45_2018.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/Sat_Oct27_13_36_45_2018.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="14" column="20" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/Sat_Oct27_16_00_37_2018.svg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/Sat_Oct27_16_06_07_2018.csv">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/Sat_Oct27_16_06_07_2018.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/Sat_Oct27_16_06_07_2018.svg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/Sat_Oct27_16_12_13_2018.svg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/Sat_Oct27_16_12_13_2018.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/Sat_Oct27_16_13_34_2018.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/Sat_Oct27_16_13_34_2018.svg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/data/Sat_Oct27_13_35_39_2018.csv" />
+    <entry file="file://$PROJECT_DIR$/data/Sat_Oct27_13_36_45_2018.png" />
+    <entry file="file://$PROJECT_DIR$/data/Sat_Oct27_13_36_45_2018.csv" />
+    <entry file="file://$PROJECT_DIR$/data/Sat_Oct27_16_00_37_2018.svg" />
+    <entry file="file://$PROJECT_DIR$/data/Sat_Oct27_16_06_07_2018.csv" />
+    <entry file="file://$PROJECT_DIR$/data/Sat_Oct27_16_06_07_2018.png" />
+    <entry file="file://$PROJECT_DIR$/data/Sat_Oct27_16_06_07_2018.svg" />
+    <entry file="file://$PROJECT_DIR$/data/Sat_Oct27_16_12_13_2018.svg" />
+    <entry file="file://$PROJECT_DIR$/data/Sat_Oct27_16_12_13_2018.png" />
+    <entry file="file://$PROJECT_DIR$/data/Sat_Oct27_16_13_34_2018.png" />
+    <entry file="file://$PROJECT_DIR$/data/Sat_Oct27_16_13_34_2018.svg" />
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -330,13 +282,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="16" column="47" selection-start-line="16" selection-start-column="47" selection-end-line="16" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/readme.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -347,17 +292,70 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/csv/Sun_Oct28_12_33_29_2018.csv" />
+    <entry file="file://$PROJECT_DIR$/csv/Sun_Oct28_12_33_34_2018.csv" />
+    <entry file="file://$PROJECT_DIR$/csv/Sun_Oct28_12_33_39_2018.csv" />
+    <entry file="file://$PROJECT_DIR$/svg/Sun_Oct28_12_37_40_2018.svg" />
+    <entry file="file://$PROJECT_DIR$/csv/Sun_Oct28_12_37_40_2018.csv" />
+    <entry file="file://$PROJECT_DIR$/csv/Sun_Oct28_12_37_35_2018.csv" />
+    <entry file="file://$PROJECT_DIR$/csv/Sun_Oct28_12_39_10_2018.csv" />
+    <entry file="file://$PROJECT_DIR$/csv/Sun_Oct28_12_39_15_2018.csv" />
+    <entry file="file://$PROJECT_DIR$/csv/Sun_Oct28_12_39_20_2018.csv" />
+    <entry file="file://$PROJECT_DIR$/csv/Sun_Oct28_12_39_05_2018.csv" />
+    <entry file="file:///usr/local/go/src/math/sqrt.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2184">
+          <caret line="91" column="5" selection-start-line="91" selection-start-column="5" selection-end-line="91" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/csv/Sun_Oct28_15_33_55_2018.csv" />
+    <entry file="file://$PROJECT_DIR$/csv/Sun_Oct28_15_34_00_2018.csv" />
+    <entry file="file://$PROJECT_DIR$/csv/Sun_Oct28_15_34_05_2018.csv" />
+    <entry file="file://$PROJECT_DIR$/csv/Sun_Oct28_15_34_10_2018.csv" />
+    <entry file="file://$PROJECT_DIR$/png/Sun_Oct28_15_34_10_2018.png" />
+    <entry file="file://$PROJECT_DIR$/png/Sun_Oct28_15_34_05_2018.png" />
+    <entry file="file://$PROJECT_DIR$/csv/Sun_Oct28_15_36_10_2018.csv" />
+    <entry file="file://$PROJECT_DIR$/csv/Sun_Oct28_15_36_00_2018.csv" />
+    <entry file="file://$PROJECT_DIR$/static/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/png/Sun_Oct28_22_29_40_2018.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/csv/Sun_Oct28_22_29_35_2018.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="136" column="37" selection-start-line="136" selection-start-column="37" selection-end-line="136" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/png/Sun_Oct28_22_29_35_2018.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/png/Sun_Oct28_22_29_45_2018.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/svg/overlay.svg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/main.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="236" column="10" selection-start-line="236" selection-start-column="10" selection-end-line="236" selection-end-column="10" />
+        <state relative-caret-position="686">
+          <caret line="147" column="4" selection-start-line="147" selection-start-column="4" selection-end-line="147" selection-end-column="4" />
           <folding>
             <element signature="n#!!block;n#main#1" />
             <element signature="n#!!block;n#jq#0" />
             <element signature="n#!!block;n#handler#0" />
+            <element signature="n#!!block;n#handlerData#0" />
             <element signature="n#!!block;n#SDCalc#0" />
-            <element signature="n#!!block;n#SD#0" />
             <element signature="n#!!block;n#ForceAndDirectionCals#0" />
+            <element signature="n#!!block;n#outputSVG#0" />
+            <element signature="n#!!block;n#overlaySVG#0" />
           </folding>
         </state>
       </provider>
