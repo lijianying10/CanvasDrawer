@@ -74,7 +74,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 
 	fmt.Println("debug: saving:", time.Now().Format("Mon_Jan_2_15_04_05_2006")+".png")
 
-	f, err := os.OpenFile(time.Now().Format(basePath+"/png/Mon_Jan_2_15_04_05_2006")+".png", os.O_WRONLY|os.O_CREATE, 0777)
+	f, err := os.OpenFile(basePath+"/png/"+time.Now().Format("Mon_Jan_2_15_04_05_2006")+".png", os.O_WRONLY|os.O_CREATE, 0777)
 	if err != nil {
 		panic("Cannot open file")
 	}
@@ -91,7 +91,7 @@ func handlerData(w http.ResponseWriter, r *http.Request) {
 	defer r.Body.Close()
 	var data []int
 	json.Unmarshal(body, &data)
-	f, err := os.OpenFile(time.Now().Format(basePath+"/csv/Mon_Jan_2_15_04_05_2006")+".csv", os.O_WRONLY|os.O_CREATE, 0777)
+	f, err := os.OpenFile(basePath+"/csv/"+time.Now().Format("Mon_Jan_2_15_04_05_2006")+".csv", os.O_WRONLY|os.O_CREATE, 0777)
 	f.Write([]byte("X,Y,F,D\n"))
 	var ps []Position
 	for idx := range data {
@@ -204,7 +204,7 @@ func outputSVG(ps []Position) {
   </g>
 </svg>
 `
-	f, err := os.OpenFile(time.Now().Format(basePath+"/svg/Mon_Jan_2_15_04_05_2006")+".svg", os.O_WRONLY|os.O_CREATE, 0777)
+	f, err := os.OpenFile(basePath+"/svg/"+time.Now().Format("Mon_Jan_2_15_04_05_2006")+".svg", os.O_WRONLY|os.O_CREATE, 0777)
 	if err != nil {
 		fmt.Println("error save svg: ", err.Error())
 	}
@@ -233,7 +233,7 @@ func overlaySVG() {
 		}
 		return nil
 	})
-	f, err := os.OpenFile(time.Now().Format(basePath+"/svg/overlay")+".svg", os.O_WRONLY|os.O_CREATE, 0777)
+	f, err := os.OpenFile(basePath+"/svg/"+time.Now().Format("Mon_Jan_2_15_04_05_2006")+".svg", os.O_WRONLY|os.O_CREATE, 0777)
 	if err != nil {
 		fmt.Println("error save svg: ", err.Error())
 	}
