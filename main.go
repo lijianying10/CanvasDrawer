@@ -15,6 +15,7 @@ import (
 	"strconv"
 	"strings"
 	"time"
+	"os/exec"
 )
 
 var basePath string
@@ -204,12 +205,31 @@ func outputSVG(ps []Position) {
   </g>
 </svg>
 `
-	f, err := os.OpenFile(basePath+"/svg/"+time.Now().Format("Mon_Jan_2_15_04_05_2006")+".svg", os.O_WRONLY|os.O_CREATE, 0777)
+	fnametime := strings.Replace(time.Now().Format("Mon_Jan_2_15_04_05_2006"), " ", "", -1)
+	fname := basePath + "/svg/" + fnametime + ".svg"
+	f, err := os.OpenFile(fname, os.O_WRONLY|os.O_CREATE, 0777)
 	if err != nil {
 		fmt.Println("error save svg: ", err.Error())
 	}
 	f.Write([]byte(svgBody))
 	f.Close()
+	// convert svg to png
+	fmt.Println("debug: ", basePath+"/ImageMagick-7.0.8/bin/magick", fname, basePath+"/png2/"+fnametime+".png")
+	cmd := exec.Command(basePath+"/ImageMagick-7.0.8/bin/magick", fname, basePath+"/png2/"+fnametime+".png")
+	cmd.Env = os.Environ()
+	var out bytes.Buffer
+	var outerr bytes.Buffer
+	cmd.Stdout = &out
+	cmd.Stderr = &outerr
+	fmt.Println("debug: ", `MAGICK_HOME="`+basePath+`/ImageMagick-7.0.8"`)
+	cmd.Env = append(cmd.Env, `MAGICK_HOME="`+basePath+`/ImageMagick-7.0.8"`)
+	cmd.Env = append(cmd.Env, `DYLD_LIBRARY_PATH="`+basePath+`/ImageMagick-7.0.8/lib/"`)
+	fmt.Println(cmd.Env)
+	err = cmd.Run()
+	if err != nil {
+		fmt.Println("error convert image file", err.Error())
+	}
+	fmt.Print(out.String(), "\n", outerr.String())
 }
 
 func overlaySVG() {
