@@ -10,14 +10,9 @@
         </style>
     </head>
     <body>
-    ChooseFile：<input id="file" type="file">
-    <button onclick="restuya()">Clear</button>
-    <button onclick="saveTu();">Save</button>
-    <hr>
-    <canvas id="canvas" width="1105" height="500">
+    <canvas id="canvas" width=window.innerWidth height=window.innerHeight>
         您的破浏览器不兼容，请升级！
     </canvas>
-    <hr>
     <div id="res"></div>
     <script type="text/javascript" src="jq.js"></script>
     <script type="text/javascript">
@@ -28,6 +23,8 @@
         var canvas = document.getElementById('canvas');
         // 获取绘图环境
         var ctx = canvas.getContext('2d');
+        ctx.canvas.width  = window.innerWidth-50;
+        ctx.canvas.height = window.innerHeight-50;
 
         let origin = ctx.fillStyle;
         ctx.fillStyle = "#FFFFFF";
@@ -76,11 +73,11 @@
         }
 
         // 当文件域内容发生改变时触发函数
-        file.onchange = function (e) {
-            filedata = e.target.files[0];
-            // 	实例化文件读取对象
-            drawImg(filedata)
-        }
+        // file.onchange = function (e) {
+        //     filedata = e.target.files[0];
+        //     // 	实例化文件读取对象
+        //     drawImg(filedata)
+        // }
 
 
         // 重新在画

@@ -6,5 +6,6 @@
   "point": {
     "color": "#FF0000",
     "width": "5"
-  }
+  },
+  "draw_tags": false
 }

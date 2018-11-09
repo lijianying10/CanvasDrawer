@@ -28,6 +28,7 @@ type Config struct {
 		Color string `json:"color"`
 		Width string `json:"width"`
 	} `json:"point"`
+	DrawTags bool `json:"draw_tags"`
 }
 
 var cfg Config
@@ -204,6 +205,14 @@ func outputSVG(ps []Position) {
 			SVGP += fmt.Sprintf(`<circle cx="%d" cy="%d" r="1" />\n`, p.X, p.Y)
 		}
 	}
+	tagSegment := ""
+	if cfg.DrawTags {
+		tagSegment = `<!-- Label the points -->
+  <g font-size="30" font-family="sans-serif" fill="black" stroke="none" text-anchor="middle">
+    <text x="` + strconv.Itoa(ps[0].X) + `" y="` + strconv.Itoa(ps[0].Y) + `" dx="-30">Start</text>
+    <text x="` + strconv.Itoa(ps[len(ps)-1].X) + `" y="` + strconv.Itoa(ps[len(ps)-1].Y) + `" dx="30">End</text>
+  </g>`
+	}
 	svgBody := `<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="500" width="1105">
@@ -216,11 +225,7 @@ func outputSVG(ps []Position) {
     <circle id="pointB" cx="` + strconv.Itoa(ps[len(ps)-1].X) + `" cy="` + strconv.Itoa(ps[len(ps)-1].Y) + `" r="3" />
 ` + SVGP + `
   </g>
-  <!-- Label the points -->
-  <g font-size="30" font-family="sans-serif" fill="black" stroke="none" text-anchor="middle">
-    <text x="` + strconv.Itoa(ps[0].X) + `" y="` + strconv.Itoa(ps[0].Y) + `" dx="-30">Start</text>
-    <text x="` + strconv.Itoa(ps[len(ps)-1].X) + `" y="` + strconv.Itoa(ps[len(ps)-1].Y) + `" dx="30">End</text>
-  </g>
+  ` + tagSegment + `
 </svg>
 `
 	fnametime := strings.Replace(time.Now().Format("Mon_Jan_2_15_04_05_2006"), " ", "", -1)
