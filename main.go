@@ -19,6 +19,18 @@ import (
 	"time"
 )
 
+type Config struct {
+	Path struct {
+		Color string `json:"color"`
+		Width string `json:"width"`
+	} `json:"path"`
+	Point struct {
+		Color string `json:"color"`
+		Width string `json:"width"`
+	} `json:"point"`
+}
+
+var cfg Config
 var basePath string
 
 func main() {
@@ -27,6 +39,11 @@ func main() {
 	if err != nil {
 		log.Fatal("老铁有点错误，请告诉philo： ", err.Error())
 	}
+	cfgBody, err := ioutil.ReadFile(path.Join(basePath, "config.json"))
+	if err != nil {
+		log.Fatal("老铁有点错误请告诉Philo：", err.Error())
+	}
+	json.Unmarshal(cfgBody, &cfg)
 	fmt.Println("dir: ", basePath)
 	fmt.Println(time.Now().Format("Mon_Jan_2_15_04_05_2006"))
 	fs := http.FileServer(http.Dir(basePath + "/static"))
@@ -190,11 +207,11 @@ func outputSVG(ps []Position) {
 	svgBody := `<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="500" width="1105">
-  <path fill="none" stroke="blue" stroke-width="3"
+  <path fill="none" stroke="` + cfg.Path.Color + `" stroke-width="` + cfg.Path.Width + `"
         d="` + pathD + `
            "/>
   <!-- Mark relevant points -->
-  <g stroke="black" stroke-width="3" fill="black">
+  <g stroke="` + cfg.Point.Color + `" stroke-width="` + cfg.Point.Width + `" fill="` + cfg.Point.Color + `">
     <circle id="pointA" cx="` + strconv.Itoa(ps[0].X) + `" cy="` + strconv.Itoa(ps[0].Y) + `" r="3" />
     <circle id="pointB" cx="` + strconv.Itoa(ps[len(ps)-1].X) + `" cy="` + strconv.Itoa(ps[len(ps)-1].Y) + `" r="3" />
 ` + SVGP + `
